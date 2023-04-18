@@ -2,18 +2,15 @@ const express = require("express");
 const app = express();
 
 app.get("/", function(req, res){
-    res.send("Seja bem-vindo ao meu app");
+   res.sendFile(__dirname + "/html/index.html");
 })
 
 app.get("/sobre", function(req, res){
-    res.send("Minha pagina é sobre");
+    res.sendFile(__dirname + "/html/sobre.html");
 })
 
 app.get("/soma/:num1/:num2", function(req, res){
-    numberOne = parseInt(req.params.num1);
-    numberTwo = parseInt(req.params.num2);
-    soma = numberOne + numberTwo;
-    res.send(soma);
+    res.send(req.params.num1 + req.params.num2);
 })
 
 
