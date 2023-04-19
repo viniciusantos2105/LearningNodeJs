@@ -19,11 +19,6 @@ const Postagem = sequelize.define('postagens', {
     }
 })
 
-Postagem.create({
-    titulo: "titulo",
-    conteudo: "conteudo dsadasdada"
-})
-
 const Usuario = sequelize.define('usuarios', {
     nome: {
         type: Sequelize.STRING
@@ -39,11 +34,5 @@ const Usuario = sequelize.define('usuarios', {
     }
 });
 
-Usuario.create({
-    nome: "Vini",
-    sobrenome: "Santos",
-    idade: 10,
-    email: "email@email.com"
-})
 
 //Usuario.sync({force: true}) = comando para criar tables
