@@ -3,7 +3,7 @@ const app = express();
 const handlebars = require('express-handlebars')
 var handle = handlebars.create({defaultLayout: 'main'});
 const bodyParser = require('body-parser')
-const Sequelize = require('sequelize');
+const Post = require('./models/Post')
 
 // Config
     // Template Engine
@@ -12,21 +12,29 @@ const Sequelize = require('sequelize');
     //Body Parser
     app.use(bodyParser.urlencoded({extended: false}))
     app.use(bodyParser.json())
-    //Conexão com o banco de dados MySQL
-    const sequelize = new Sequelize('test', 'root', '1234', {
-        host: "localhost",
-        dialect: 'mysql'
-    });
+
    
 //Rotas
+    
+    app.get('/', function(req, res){
+        res.render('home')
+    })
+
     app.get('/cad', function(req, res){
          res.render('formulario');
     })
 
     app.post('/add', function(req, res){
-        req.body.conteudo
-        res.send("Texto: "+ req.body.titulo +  "\r\nConteudo: " + req.body.conteudo);
+        Post.create({
+            titulo: req.body.titulo,
+            conteudo: req.body.conteudo
+        }).then(function(){
+            res.redirect('/')
+        }).catch(function(erro){
+            res.send("Houve um erro: " + erro)
+        })
     })
+
 
 app.listen(8081, function(){
     console.log("Servidor rodando na porta 8081");
