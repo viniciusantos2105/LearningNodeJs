@@ -1,5 +1,6 @@
 const mongoose = require("mongoose")
 
+//Configurando o mongoose 
 mongoose.Promise = global.Promise;
 mongoose.connect("mongodb://127.0.0.1:27017/aprendendo?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+1.8.1", {   
     useNewUrlParser:true,
